@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "@tanstack/react-router"
 import { Home, Users } from "lucide-react"
 
 import { SidebarAppearance } from "@/components/Common/Appearance"
@@ -12,7 +13,13 @@ import useAuth from "@/hooks/useAuth"
 import { type Item, Main } from "./Main"
 import { User } from "./User"
 
-const baseItems: Item[] = [{ icon: Home, title: "Dashboard", path: "/" }]
+const baseItems: Item[] = [
+  {
+    icon: Home,
+    title: "Dashboard",
+    path: "/dashboard",
+  },
+]
 
 export function AppSidebar() {
   const { user: currentUser } = useAuth()
@@ -24,7 +31,9 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="px-4 py-6 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:items-center">
-        <Logo variant="responsive" />
+        <RouterLink to="/dashboard">
+          <Logo variant="responsive" asLink={false} />
+        </RouterLink>
       </SidebarHeader>
       <SidebarContent>
         <Main items={items} />
